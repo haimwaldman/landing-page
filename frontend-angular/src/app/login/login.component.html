@@ -1,0 +1,9 @@
+<div class="login-wrapper">
+  <h2 class="login-title">התחברות</h2>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <input type="email" name="email" [(ngModel)]="email" placeholder="Email" required />
+    <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required />
+    <button type="submit" [disabled]="!loginForm.valid">התחבר</button>
+  </form>
+</div>

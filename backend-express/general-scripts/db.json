@@ -1,0 +1,32 @@
+{
+  "contents": [
+    {
+      "id": "9igcQ5YOMINnE0lQylYv9",
+      "type": "text",
+      "title": "למה הקורס חשוב?",
+      "body": "בקורס תלמדו איך להגיב מתוך הבנה, להציב גבולות בלי עונשים, ולגדל ילדים עם ביטחון עצמי."
+    },
+    {
+      "id": "abQiTdR5GEsKmGuvgjBds",
+      "type": "video",
+      "title": "הצצה לפרק הראשון",
+      "body": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    {
+      "id": "B0SsUjs7cMORWgjCySjxb",
+      "type": "text",
+      "title": "מי אני?",
+      "body": "אני מיכל, מדריכת הורים עם ניסיון של מעל 12 שנה. ליוויתי מאות משפחות בתהליכים משני חיים."
+    },
+    {
+      "id": "jrDTQrQAG8hZjpquV4Zxu",
+      "type": "video",
+      "title": "המלצה חמה מאמא",
+      "body": "https://youtu.be/3GwjfUFyY6M"
+    }
+  ],
+  "user": {
+    "email": "admin@example.com",
+    "passwordHash": "$2a$10$SEgJSVEyfKm.lR8F9q7C2O6fDWgsNvqn5KpYeMExGK2hte.xKIoRq"
+  }
+}

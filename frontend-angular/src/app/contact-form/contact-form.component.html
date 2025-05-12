@@ -1,0 +1,13 @@
+<div class="contact-form-wrapper">
+  <h2 class="form-title">צור קשר</h2>
+
+  <form #contactForm="ngForm" (ngSubmit)="send()">
+    <input [(ngModel)]="name" name="name" placeholder="שם מלא" required />
+    <input [(ngModel)]="email" name="email" type="email" placeholder="אימייל" required />
+    <textarea [(ngModel)]="message" name="message" placeholder="הודעה" required></textarea>
+    <button type="submit" [disabled]="!contactForm.valid">שלח</button>
+  </form>
+
+  <p *ngIf="sent">✔️ נשלח בהצלחה!</p>
+  <p *ngIf="error" style="color: red; text-align: center;">שליחה נכשלה. נסה שוב.</p>
+</div>

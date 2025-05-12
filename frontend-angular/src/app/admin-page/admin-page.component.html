@@ -1,0 +1,99 @@
+<div class="admin-container">
+  <h1>ניהול תכנים</h1>
+  <button class="primary-button logout-button" (click)="logout()">🚪 התנתק</button>
+
+  <div class="form-section">
+    <h2>הוספת תוכן חדש</h2>
+    <form (ngSubmit)="saveContent()">
+      <input [(ngModel)]="newContent.title" name="title" placeholder="כותרת" required />
+
+      <select [(ngModel)]="newContent.type" name="type">
+        <option value="text">תוכן טקסט</option>
+        <option value="video">וידאו YouTube</option>
+      </select>
+
+      <textarea
+        *ngIf="newContent.type === 'text'"
+        [(ngModel)]="newContent.body"
+        name="body"
+        placeholder="תוכן מילולי"
+        required
+      ></textarea>
+
+      <input
+        *ngIf="newContent.type === 'video'"
+        [(ngModel)]="newContent.body"
+        name="videoUrl"
+        placeholder="קישור YouTube"
+        required
+      />
+
+      <div class="form-actions">
+        <button type="submit" class="primary-button">💾 שמור</button>
+        <button type="button" class="secondary-button" (click)="resetForm()">🧹 נקה</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="filter-section">
+    <label>סינון לפי סוג:</label>
+    <select [(ngModel)]="filterType">
+      <option value="">הכל</option>
+      <option value="text">טקסט</option>
+      <option value="video">וידאו</option>
+    </select>
+  </div>
+
+  <div class="feedback-msg" *ngIf="feedbackMessage">{{ feedbackMessage }}</div>
+
+  <div class="content-list">
+    <div class="content-card" [ngClass]="{ 'editing-card': item.editing }" *ngFor="let item of filteredContents">
+      <div *ngIf="item.editing">
+        <input [(ngModel)]="item.title" placeholder="כותרת" />
+        <select [(ngModel)]="item.type">
+          <option value="text">טקסט</option>
+          <option value="video">וידאו</option>
+        </select>
+        <textarea *ngIf="item.type === 'text'" [(ngModel)]="item.body" placeholder="תוכן"></textarea>
+        <input *ngIf="item.type === 'video'" [(ngModel)]="item.body" placeholder="YouTube URL" />
+      </div>
+
+      <div *ngIf="!item.editing">
+        <h3>{{ item.title }}</h3>
+        <p *ngIf="item.type === 'text'">{{ item.body }}</p>
+        <iframe
+          *ngIf="item.type === 'video'"
+          [src]="getSafeUrl(item.body)"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <p class="timestamps">
+        נוצר בתאריך: {{ item.createdAt | date:'short' }} |
+        עודכן: {{ item.updatedAt | date:'short' }}
+      </p>
+
+      <div class="action-row">
+        <label class="primary-toggle">
+          <input
+            type="checkbox"
+            [(ngModel)]="item.visible"
+            [disabled]="!item.editing"
+          />
+          הצג
+        </label>
+
+        <ng-container *ngIf="!item.editing">
+          <button class="primary-button" (click)="edit(item)">✏️ ערוך</button>
+          <button class="primary-button" (click)="remove(item.id)">🗑️ מחק</button>
+        </ng-container>
+
+        <ng-container *ngIf="item.editing">
+          <button class="primary-button" (click)="save(item)">💾 שמור</button>
+          <button class="primary-button" (click)="cancelEdit(item)">❌ בטל עריכה</button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

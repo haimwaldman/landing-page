@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap');
+
+:root {
+  --color-gold: #C6A300;
+  --color-sage: #A8BBA2;
+  --color-peach: #F6B5A0;
+  --color-ivory: #FFF8E7;
+  --font-primary: 'Assistant', sans-serif;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--color-ivory);
+  margin: 0;
+  color: #333;
+}
+
+/* You can add global styles to this file, and also import other style files */

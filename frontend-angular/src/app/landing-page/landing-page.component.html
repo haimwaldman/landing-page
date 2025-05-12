@@ -1,0 +1,32 @@
+<div class="hero">
+  <img [src]="heroImage" alt="תמונה ראשית" class="hero-img" />
+  <h1>קורס הורות מודעת ומעשית</h1>
+</div>
+
+<div *ngIf="contents.length > 0" class="carousel">
+  <div class="content-card" *ngIf="contents[currentIndex]">
+    <h2>{{ contents[currentIndex].title }}</h2>
+
+    <div *ngIf="contents[currentIndex]?.type === 'text'" class="carousel-slide">
+      <div class="card-style">{{ contents[currentIndex].body }}</div>
+    </div>
+
+    <div *ngIf="contents[currentIndex]?.type === 'video'" class="carousel-slide">
+      <iframe [src]="getSafeVideoUrl(contents[currentIndex].body)" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>
+<div class="carousel-dots" *ngIf="contents.length > 1">
+  <span
+    class="dot"
+    *ngFor="let item of contents; index as i"
+    [class.active]="i === currentIndex"
+    (click)="currentIndex = i">
+  </span>
+</div>
+<div class="cta-buttons">
+  <a href="https://www.youtube.com/@yourchannel" target="_blank" class="cta-button">🎥 מעבר לערוץ היוטיוב</a>
+  <a routerLink="/all-content" class="cta-button">📚 מעבר לתכנים נוספים</a>
+</div>
+
+<app-contact-form></app-contact-form>
